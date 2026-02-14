@@ -1,71 +1,142 @@
+/* ================= INTERACTIVE GRID ================= */
+
 .about-interactive-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 30px;
+  gap: 36px;
+  align-items: start;
 }
+
+/* ================= LEFT – INTERACTIVE CARDS ================= */
 
 .interactive-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.hover-card {
-  background: #fff;
-  padding: 24px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  border-left: 5px solid transparent;
-}
-
-.hover-card:hover,
-.hover-card.active {
-  border-left-color: var(--primary-teal);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.08);
-}
-
-.hover-card h3 {
-  margin-bottom: 10px;
-}
-
-.hover-card p {
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.about-side {
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
+/* Card Base */
+.hover-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  position: relative;
+  transition: all 0.28s ease;
+}
+
+/* Accent bar */
+.hover-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 4px;
+  border-radius: 8px;
+  background: transparent;
+  transition: background 0.25s ease;
+}
+
+/* Hover & Active */
+.hover-card:hover,
+.hover-card.active {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.08);
+}
+
+.hover-card:hover::before,
+.hover-card.active::before {
+  background: var(--primary-teal);
+}
+
+/* Title */
+.hover-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Content */
+.hover-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* ================= RIGHT – SIDE PANEL ================= */
+
+.about-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.about-side .card {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.05);
+}
+
+/* ================= NOTICE BOARD ================= */
+
 .notice-board ul {
   padding-left: 18px;
+  margin: 0;
 }
 
 .notice-board li {
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--text-muted);
 }
+
+/* ================= QUICK LINKS ================= */
 
 .quick-links a {
   display: block;
-  margin-bottom: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
   font-weight: 500;
+  color: var(--text-dark);
+  transition: background 0.2s ease;
 }
 
-/* Responsive: stack interactive section on tablet/mobile */
+.quick-links a:hover {
+  background: #f1f5f9;
+}
+
+/* ================= RESPONSIVE ================= */
+
 @media (max-width: 900px) {
-  .about-interactive-grid { grid-template-columns: 1fr; gap: 18px }
-  .interactive-cards { order: 1 }
-  .about-side { order: 2 }
-  .hover-card { padding: 18px }
-  .about-side .card { padding: 16px }
-  .about-side .quick-links a { font-size: 15px }
+  .about-interactive-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hover-card {
+    padding: 22px;
+  }
+
+  .about-side .card {
+    padding: 20px;
+  }
 }
 
-/* On very small screens, make hover-card content always visible when active and allow collapse */
 @media (max-width: 600px) {
-  .hover-card { padding: 14px }
-  .hover-card p { font-size: 14px }
+  .hover-card {
+    padding: 18px;
+  }
+
+  .hover-card h3 {
+    font-size: 17px;
+  }
+
+  .hover-card p {
+    font-size: 14px;
+  }
 }

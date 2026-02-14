@@ -1,122 +1,266 @@
-.about-section, .about-page {
+/* ============================= */
+/* Base Layout                   */
+/* ============================= */
+
+.about-section,
+.about-page {
   display: grid;
-  gap: 32px;
-  padding: 32px 0;
+  gap: 48px;
+  padding: 56px 0;
   align-items: start;
 }
 
-/* Redesigned about layout */
-.about-grid.grid-2 { display:grid; grid-template-columns: 1fr 420px; gap:24px; align-items:start; }
-.about-left { display:flex; flex-direction:column; gap:18px; }
-.vision-panel { background:linear-gradient(180deg,#fff,#fff8f1); padding:22px; border-radius:16px; }
-.vision-panel .lead { font-size:16px; margin-top:8px; margin-bottom:8px; }
-.quick-stats { display:flex; gap:12px; margin-top:12px; }
-.quick-stats div { background:#fff; padding:10px 12px; border-radius:12px; box-shadow:0 8px 20px rgba(2,6,23,0.04); text-align:center; }
-.quick-stats strong { display:block; font-size:12px; color:var(--text-muted); }
-.quick-stats span { display:block; font-weight:800; margin-top:6px; }
+/* ============================= */
+/* Grid Layout                   */
+/* ============================= */
 
-.approach-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin-top:12px; }
-.approach-card { background:linear-gradient(180deg, #ffffff, #fffdf9); padding:14px; border-radius:16px; box-shadow:0 12px 30px rgba(2,6,23,0.06); display:flex; gap:14px; align-items:flex-start; transition:transform .22s ease, box-shadow .22s ease; }
-.approach-card:hover { transform: translateY(-6px); box-shadow:0 18px 40px rgba(2,6,23,0.08); }
-.approach-icon { width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; color:#fff; box-shadow:0 8px 24px rgba(2,6,23,0.06); flex:0 0 56px; }
-.approach-body { flex:1; }
-.approach-body h4 { margin:0 0 6px 0; font-size:18px; }
-.approach-body .lead { font-weight:700; margin:0 0 8px 0; }
-.approach-body p { margin:0 0 8px 0; color:var(--text-muted); }
-
-/* Individual icon color schemes */
-.icon-academic { background: linear-gradient(135deg,#ff9a6b,#ff6b9a); }
-.icon-community { background: linear-gradient(135deg,#6EE7B7,#4CC9F0); }
-.icon-holistic { background: linear-gradient(135deg,#FFD166,#FFB86B); }
-
-@media (max-width: 760px) {
-  .approach-card { flex-direction:row; }
-  .approach-icon { width:48px; height:48px; }
+.about-grid.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: start;
 }
 
-.about-right .about-illustration img { border-radius:12px; }
-.vmv-panel { margin-top:14px; padding:14px; }
-.vmv-row { display:flex; gap:12px; }
-.vmv-box { background:#fff; padding:12px; border-radius:10px; flex:1; box-shadow:0 8px 20px rgba(2,6,23,0.04); }
-.vmv-box h5 { margin:0 0 6px 0; }
-
-/* Vision panel CTA */
-.vision-actions { display:flex; gap:10px; margin-top:14px; }
-.vision-actions .btn { padding:10px 14px; border-radius:10px; }
-.vision-actions .btn-primary { background: linear-gradient(90deg,var(--primary-orange),var(--primary-gold)); color:#fff; box-shadow:0 10px 30px rgba(248,158,82,0.14); }
-
-/* Illustration polish */
-.about-right .about-illustration { position:relative; overflow:hidden; }
-.about-right .about-illustration::after { content:''; position:absolute; left:10%; top:12%; width:80%; height:78%; border-radius:18px; box-shadow: 0 40px 80px rgba(2,6,23,0.08); pointer-events:none; }
-
-@media (max-width: 980px) {
-  .vision-actions { flex-direction:column; gap:8px; }
+.about-left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-@media (max-width: 980px) {
-  .about-grid.grid-2 { grid-template-columns: 1fr; }
-}
+/* ============================= */
+/* Vision Panel                  */
+/* ============================= */
 
-.about-illustration { width: 100%; border-radius: 30px; box-shadow: 0 10px 30px var(--shadow-soft); }
-
-.about-panel {
-  background: #fff3e6;
-  border-radius: 30px;
+.vision-panel {
+  background: #ffffff;
   padding: 32px;
-  margin: 20px 0;
-  box-shadow: 0 8px 25px var(--shadow-soft);
+  border-radius: 20px;
+  border: 1px solid #ececec;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.05);
 }
 
-.cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; margin-top: 24px; }
+.vision-panel .lead {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 12px 0;
+  color: var(--text-muted);
+}
 
-.info-card {
-  background: #fff;
-  border-radius: 30px;
-  padding: 24px 16px;
+/* ============================= */
+/* Quick Stats                   */
+/* ============================= */
+
+.quick-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.quick-stats div {
+  flex: 1;
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 16px;
   text-align: center;
-  position: relative;
-  box-shadow: 0 10px 30px var(--shadow-soft);
+  border: 1px solid #eee;
 }
-.info-card:hover { transform: scale(1.03); }
 
-.info-card .badge {
-  width: 60px; height: 60px; border-radius: 50%;
+.quick-stats strong {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.quick-stats span {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 6px;
+  color: var(--text-dark);
+}
+
+/* ============================= */
+/* Approach Cards                */
+/* ============================= */
+
+.approach-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.approach-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.25s ease;
+}
+
+.approach-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(2, 6, 23, 0.08);
+}
+
+.approach-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: #f1f5f9;
+  color: var(--primary-orange);
+  flex-shrink: 0;
+}
+
+.approach-body h4 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.approach-body .lead {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.approach-body p {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ============================= */
+/* Right Side / Illustration     */
+/* ============================= */
+
+.about-right .about-illustration {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 24px;
+  border: 1px solid #eee;
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.06);
+}
+
+.about-right .about-illustration img {
+  border-radius: 18px;
+}
+
+/* ============================= */
+/* VMV Section                   */
+/* ============================= */
+
+.vmv-panel {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.vmv-row {
+  display: flex;
+  gap: 20px;
+}
+
+.vmv-box {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 18px;
+  flex: 1;
+  border: 1px solid #eee;
+}
+
+.vmv-box h5 {
+  margin-bottom: 6px;
+}
+
+/* ============================= */
+/* CTA Buttons                   */
+/* ============================= */
+
+.vision-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.vision-actions .btn {
+  padding: 12px 18px;
+  border-radius: 12px;
+}
+
+.vision-actions .btn-primary {
   background: var(--primary-orange);
   color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 18px;
-  position: absolute; left: 50%; top: -30px;
-  transform: translateX(-50%);
+  box-shadow: 0 10px 28px rgba(248, 158, 82, 0.2);
 }
-/* ========================== */
-/* Responsive Images Fix       */
-/* ========================== */
+
+/* ============================= */
+/* Info Cards                    */
+/* ============================= */
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 20px;
+  text-align: center;
+  border: 1px solid #eee;
+  transition: transform 0.25s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-6px);
+}
+
+.info-card .badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0 auto 16px;
+}
+
+/* ============================= */
+/* Images (Global Fix)           */
+/* ============================= */
 
 img {
-  max-width: 100%;      /* never exceed parent container */
-  height: auto;         /* maintain aspect ratio */
-  display: block;       /* remove inline spacing */
-  border-radius: 20px;  /* soft corners for school-friendly look */
-  object-fit: cover;    /* cover container without stretching */
-}
-
-/* Specific containers (cards, hero images, gallery) */
-.hero-full img,
-.about-illustration img,
-.image-grid img,
-.faculty-card .avatar,
-.info-card img {
-  max-width: 95%;       /* slightly smaller than full container */
-  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
   display: block;
-  border-radius: 30px;  /* rounded, blob-style look */
-}
-
-/* Optional: constrain gallery & grid images */
-.gallery-full .image-grid img,
-.facilities-full .image-grid img {
-  max-height: 220px;   /* avoid very tall images */
-  width: 100%;
+  border-radius: 18px;
   object-fit: cover;
 }
 
+/* ============================= */
+/* Responsive                    */
+/* ============================= */
+
+@media (max-width: 980px) {
+  .about-grid.grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .vision-actions {
+    flex-direction: column;
+  }
+
+  .vmv-row {
+    flex-direction: column;
+  }
+}

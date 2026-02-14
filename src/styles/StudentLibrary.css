@@ -1,0 +1,90 @@
+.library-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+.library-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #1e293b;
+}
+
+.library-header p {
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Controls */
+.library-controls {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.library-controls input,
+.library-controls select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Book List */
+.book-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: #f8fafc;
+  transition: 0.2s ease;
+}
+
+.book-item:hover {
+  background: #f1f5f9;
+}
+
+.book-item h4 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.book-item p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Status */
+.book-status span {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.available {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.issued {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.empty {
+  text-align: center;
+  color: #94a3b8;
+  margin-top: 20px;
+}

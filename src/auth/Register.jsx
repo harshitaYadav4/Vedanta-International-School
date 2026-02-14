@@ -3,54 +3,76 @@ import { Link } from 'react-router-dom'
 import AuthLayout from './AuthLayout'
 
 export default function Register() {
-  const [role, setRole] = useState('student')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [agree, setAgree] = useState(false)
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    role: "student"
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // TODO: wire up registration
-    alert('Account created (demo)')
-  }
+    e.preventDefault();
+    console.log(formData);
+  };
 
   return (
-    <AuthLayout title="Create an Account">
-      <p className="auth-sub">Register to access student/parent features. Use a valid email.</p>
+    <AuthLayout title="Create Account">
+      <form onSubmit={handleSubmit} className="auth-form">
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label className="form-label">
-          <span>Full name</span>
-          <input value={name} onChange={e=>setName(e.target.value)} placeholder="Your full name" required />
-        </label>
+        <label>Full Name</label>
+        <input
+          type="text"
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
+          placeholder="Enter your full name"
+          required
+        />
 
-        <label className="form-label">
-          <span>Email</span>
-          <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@school.edu" required />
-        </label>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Enter your email"
+          required
+        />
 
-        <label className="form-label">
-          <span>Password</span>
-          <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Create a password" required />
-        </label>
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Enter password"
+          required
+        />
 
-        <label className="form-label">
-          <span>Register as</span>
-          <select value={role} onChange={e=>setRole(e.target.value)}>
-            <option value="student">Student</option>
-            <option value="parent">Parent</option>
-          </select>
-        </label>
+        <label>Register As</label>
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+          className="role-select"
+        >
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+          <option value="admin">Admin</option>
+        </select>
 
-        <label className="inline">
-          <input type="checkbox" checked={agree} onChange={e=>setAgree(e.target.checked)} /> I agree to the <Link to="/terms">Terms</Link>
-        </label>
+        <button type="submit" className="btn-primary">
+          Register
+        </button>
 
-        <button className="btn btn-primary" type="submit" disabled={!agree}>Create Account</button>
       </form>
-
-      <div className="auth-links">Already have an account? <Link to="/login">Sign in</Link></div>
     </AuthLayout>
-  )
+  );
 }
