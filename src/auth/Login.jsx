@@ -19,40 +19,48 @@ export default function Login() {
     else navigate('/')
   }
 
+  const roles = ['student', 'parent', 'admin']
+
   return (
     <AuthLayout title="Welcome Back">
       <p className="auth-sub">Sign in to access your dashboard and school resources.</p>
 
       <form className="auth-form" onSubmit={handleLogin}>
-        <label className="form-label">
-          <span>Email</span>
-          <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@school.edu" required />
-        </label>
+        <div className="form-group">
+          <label>Email Address</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@school.edu" required />
+        </div>
 
-        <label className="form-label">
-          <span>Password</span>
-          <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" required />
-        </label>
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter your password" required />
+        </div>
 
         <div className="form-row">
-          <div className="form-left">
-            <label className="inline"><input type="checkbox" checked={remember} onChange={e=>setRemember(e.target.checked)} /> Remember me</label>
-          </div>
-          <div className="form-right">
-            <Link to="/forgot">Forgot?</Link>
+          <label className="checkbox-label">
+            <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} />
+            <span>Remember me</span>
+          </label>
+          <Link to="/forgot" className="forgot-link">Forgot Password?</Link>
+        </div>
+
+        <div className="form-group">
+          <label>Login as</label>
+          <div className="role-pills">
+            {roles.map(r => (
+              <button
+                key={r}
+                type="button"
+                className={`role-pill ${role === r ? 'active' : ''}`}
+                onClick={() => setRole(r)}
+              >
+                {r.charAt(0).toUpperCase() + r.slice(1)}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="role-select">
-          <label>Login as:</label>
-          <select value={role} onChange={e=>setRole(e.target.value)}>
-            <option value="student">Student</option>
-            <option value="parent">Parent</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-
-        <button className="btn btn-primary" type="submit">Sign In</button>
+        <button className="btn btn-primary auth-submit" type="submit">Sign In</button>
       </form>
 
       <div className="auth-links">New here? <Link to="/register">Create an account</Link></div>

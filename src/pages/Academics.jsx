@@ -1,126 +1,83 @@
 import React, { useState, useEffect } from 'react'
 import SectionTitle from '../Components/SectionTitle'
 import siteData from '../data/siteData'
-import '../styles/admission.css'
-import '../styles/global.css'
+import ScrollAnimator from '../Components/Common/ScrollAnimator'
 import Loader from '../Components/Common/Loader'
+import '../styles/admission.css'
 
 export default function Academics() {
   const [loading, setLoading] = useState(true)
   const s = siteData.school
 
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 350)
-    return () => clearTimeout(t)
-  }, [])
-
+  useEffect(() => { const t = setTimeout(() => setLoading(false), 350); return () => clearTimeout(t) }, [])
   if (loading) return <Loader />
 
+  const subjectIcons = {
+    'English': '📝', 'Hindi': '🔤', 'Sanskrit': '📜', 'Mathematics': '🔢',
+    'Science': '🔬', 'Social Science': '🌍', 'Computer Science': '💻', 'General Knowledge': '🧠', 'Spoken English': '🗣️'
+  }
+
   return (
-    <main className="admission-page">
-
-      {/* HERO */}
-      <section
-        className="hero-full full-bleed"
-        style={{ backgroundImage: `url(${siteData.images[2]})` }}
-      >
-        <div className="container hero-overlay">
-          <SectionTitle
-            eyebrow="Admission"
-            title="Admission Process"
-          >
-            Admission open for the academic session <strong>{s.session}</strong>.
-            We follow a transparent and parent-friendly admission system.
-          </SectionTitle>
-        </div>
-      </section>
-
-      {/* PROCESS */}
-      <section className="content-full full-bleed">
+    <main className="academics-page">
+      <section className="page-hero" style={{ backgroundImage: `url(${siteData.images[2]})` }}>
         <div className="container">
-          <SectionTitle eyebrow="Steps" title="How to Apply" />
-
-          <div className="cards steps-grid">
-            <div className="card">
-              <h4>📞 Enquiry</h4>
-              <p>Visit the school campus or call us to understand our curriculum and facilities.</p>
-            </div>
-            <div className="card">
-              <h4>📝 Application</h4>
-              <p>Collect and submit the admission form along with required documents.</p>
-            </div>
-            <div className="card">
-              <h4>🎓 Interaction</h4>
-              <p>An informal interaction/assessment may be conducted for age-appropriate classes.</p>
-            </div>
-            <div className="card">
-              <h4>✅ Confirmation</h4>
-              <p>Selected students receive confirmation after fee submission.</p>
-            </div>
-          </div>
+          <div className="breadcrumb"><a href="/">Home</a><span className="sep">/</span><span>Academics</span></div>
+          <div className="eyebrow">Academics</div>
+          <h1>Academic Excellence</h1>
+          <p>A comprehensive, competency-based curriculum preparing students for lifelong learning.</p>
         </div>
       </section>
 
-      {/* ELIGIBILITY + DOCUMENTS */}
-      <section className="content-soft full-bleed">
-        <div className="container two-col">
-          <div>
-            <SectionTitle eyebrow="Criteria" title="Eligibility" />
-            <ul className="clean-list">
-              <li>Age criteria as per government norms</li>
-              <li>Previous school records (if applicable)</li>
-              <li>Transfer certificate for Grade 2 onwards</li>
-            </ul>
-          </div>
-
-          <div>
-            <SectionTitle eyebrow="Documents" title="Required Documents" />
-            <ul className="clean-list">
-              <li>Birth Certificate</li>
-              <li>Aadhaar Card (Student & Parent)</li>
-              <li>2 Passport Size Photographs</li>
-              <li>Previous Report Card</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ACADEMIC HIGHLIGHTS */}
-      <section className="content-full full-bleed">
+      <section className="full-bleed">
         <div className="container">
-          <SectionTitle eyebrow="Academics" title="Why Choose Our School?" />
+          <ScrollAnimator><SectionTitle eyebrow="Curriculum" title="Subjects We Teach" centered>Our curriculum covers a wide range of subjects ensuring well-rounded education.</SectionTitle></ScrollAnimator>
+          <div className="subject-cards-grid">
+            {siteData.subjects.map((sub, i) => (
+              <ScrollAnimator key={i} delay={Math.min(i + 1, 4)}>
+                <div className="subject-card"><div className="subject-icon">{subjectIcons[sub] || '📖'}</div><h4>{sub}</h4></div>
+              </ScrollAnimator>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      <section className="full-bleed alt-bg">
+        <div className="container">
+          <ScrollAnimator><SectionTitle eyebrow="Beyond Books" title="Activities & Programs" centered>Holistic development through sports, yoga and spoken English.</SectionTitle></ScrollAnimator>
+          <div className="cards" style={{ maxWidth: 800, margin: '24px auto 0' }}>
+            {siteData.activities.map((act, i) => (
+              <ScrollAnimator key={i} delay={i + 1}>
+                <div className="card" style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: 12 }}>{act.includes('English') ? '🗣️' : act.includes('Yoga') ? '🧘' : '⚽'}</div>
+                  <h4>{act}</h4>
+                  <p>Integrated into the daily schedule for comprehensive student development.</p>
+                </div>
+              </ScrollAnimator>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="full-bleed">
+        <div className="container">
+          <ScrollAnimator><SectionTitle eyebrow="Academics" title="Why Choose Our School?" centered /></ScrollAnimator>
           <div className="cards">
-            <div className="card">
-              <h4>📚 Holistic Curriculum</h4>
-              <p>Balanced focus on academics, sports, arts, and values.</p>
-            </div>
-            <div className="card">
-              <h4>👩‍🏫 Experienced Faculty</h4>
-              <p>Well-trained teachers dedicated to student growth.</p>
-            </div>
-            <div className="card">
-              <h4>🧠 Activity-Based Learning</h4>
-              <p>Smart classrooms and experiential teaching methods.</p>
-            </div>
+            <ScrollAnimator delay={1}><div className="card"><h4>📚 Holistic Curriculum</h4><p>Balanced focus on academics, sports, arts, and values for complete growth.</p></div></ScrollAnimator>
+            <ScrollAnimator delay={2}><div className="card"><h4>👩‍🏫 Experienced Faculty</h4><p>Well-trained teachers dedicated to student growth and individual attention.</p></div></ScrollAnimator>
+            <ScrollAnimator delay={3}><div className="card"><h4>🧠 Activity-Based Learning</h4><p>Modern teaching methods with emphasis on experiential and inquiry-based learning.</p></div></ScrollAnimator>
           </div>
         </div>
       </section>
 
-      {/* CONTACT CTA */}
-      <section className="cta-section full-bleed">
-        <div className="container">
-          <h3>Need Help With Admission?</h3>
-          <p>
-            📞 {s.phones.join(' / ')} <br />
-            📧 {s.email}
-          </p>
-          <a href="/contact" className="btn btn-primary">
-            Contact Admission Office
-          </a>
+      <section className="full-bleed cta-gradient" style={{ background: 'linear-gradient(135deg, var(--navy), var(--teal))' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <ScrollAnimator>
+            <h2 style={{ color: '#fff' }}>Want to Learn More?</h2>
+            <p style={{ color: 'rgba(255,255,255,0.78)', maxWidth: 500, margin: '0 auto 24px' }}>📞 {s.phones.join(' / ')} | 📧 {s.email}</p>
+            <a href="/contact" className="btn btn-primary">Contact Us</a>
+          </ScrollAnimator>
         </div>
       </section>
-
     </main>
   )
 }
